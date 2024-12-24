@@ -50,12 +50,15 @@ export default function Home() {
         formData.append("file", file);
       //  const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, { vector });
 
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
+      const response = await axios.post("https://cvss31lookupservice-6053310091.us-central1.run.app/api/upload", formData, {
+          
+     //   const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         data = response.data;
       } else {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/calculate`, { vector });
+       // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/calculate`, { vector });
+       const response = await axios.post("https://cvss31lookupservice-6053310091.us-central1.run.app/api/calculate", { vector });
 
        // const response = await axios.post("`${process.env.NEXT_PUBLIC_API_URL}/api/calculate`", { vector });
         data = response.data;

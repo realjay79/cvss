@@ -1,18 +1,42 @@
 "use client"; // This marks the file as a Client Component
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import axios from "axios";
+
+// Define the types for the API response
+interface Result {
+  score: number;
+  severity: string;
+  vectorString: string;
+}
+
+// Define a type for Axios error response
+interface AxiosError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+}
 
 export default function Home() {
   const [vector, setVector] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
-  const [results, setResults] = useState<any>(""); // Use a specific type if the API response is known
+  const [results, setResults] = useState<Result | null>(null); // Use the Result interface
   const [error, setError] = useState<string>("");
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    } else {
+      setFile(null);
+    }
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-    setResults("");
+    setResults(null);
 
     if (!vector && !file) {
       setError("Please provide a vector string or upload a file.");
@@ -20,7 +44,7 @@ export default function Home() {
     }
 
     try {
-      let data;
+      let data: Result;
       if (file) {
         const formData = new FormData();
         formData.append("file", file);
@@ -37,8 +61,9 @@ export default function Home() {
       // Clear the input fields
       setVector("");
       setFile(null);
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Error processing your request.");
+    } catch (err) {
+      const axiosError = err as AxiosError;
+      setError(axiosError.response?.data?.message || "Error processing your request.");
     }
   };
 
@@ -61,7 +86,7 @@ export default function Home() {
           <input
             type="file"
             accept=".txt"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={handleFileChange}
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-black"
           />
         </div>

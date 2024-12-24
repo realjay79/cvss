@@ -1,0 +1,3 @@
+[submodule "front-end/cvss-calculator"]
+	path = front-end/cvss-calculator
+	url = https://github.com/realjay79/cvss.git

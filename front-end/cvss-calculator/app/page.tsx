@@ -48,12 +48,16 @@ export default function Home() {
       if (file) {
         const formData = new FormData();
         formData.append("file", file);
-        const response = await axios.post("`${process.env.NEXT_PUBLIC_API_URL}/api/upload", formData, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/upload`, { vector });
+
+       // const response = await axios.post("`${process.env.NEXT_PUBLIC_API_URL}/api/upload", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         data = response.data;
       } else {
-        const response = await axios.post("`${process.env.NEXT_PUBLIC_API_URL}/api/calculate", { vector });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/calculate`, { vector });
+
+       // const response = await axios.post("`${process.env.NEXT_PUBLIC_API_URL}/api/calculate`", { vector });
         data = response.data;
       }
       setResults(data);

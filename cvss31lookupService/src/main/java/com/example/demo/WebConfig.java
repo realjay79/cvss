@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("https://spring-boot-app-6053310091.us-central1.run.app") // Front-end origin
+                .allowedOrigins("https://cvss31lookupservice-6053310091.us-central1.run.app") // Front-end origin
                 .allowedMethods("POST", "GET", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);

@@ -13,7 +13,7 @@ Once you've provided the vector string or uploaded the file, the calculator will
 
 ## Calculation Model
 
-This calculator uses a **hybrid scoring model** that combines multiplicative and additive approaches based on specific weights and formula components.
+CVSS3.1 calculator uses a **hybrid scoring model** that combines multiplicative and additive approaches based on specific weights and formula components.
 
 ### Key Aspects of the Calculation Logic
 

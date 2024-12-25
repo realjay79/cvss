@@ -4,6 +4,8 @@ This project provides a CVSS 3.1 calculator that allows users to enter a vector 
 
 ## Usage Instructions
 
+The UI is a nextjs app stored in the front-end folder. It provides the below options.
+
 1. **Enter Vector String:** Input a CVSS 3.1 vector string directly into the text box.
     
 2. **Upload File:** Alternatively, you can upload a file containing CVSS 3.1 vector strings.
